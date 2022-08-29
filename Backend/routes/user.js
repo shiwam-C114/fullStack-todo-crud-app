@@ -6,7 +6,7 @@ userRouter.post("/register", async (req, res) => {
     try {
         const user = User(req.body)
         user.save()
-        res.status(200).send("user created")
+        res.status(200).send({msg:"user created"})
 
     } catch (error) {
         console.log(error)
@@ -19,7 +19,7 @@ userRouter.post("/login", async (req, res) => {
         const { email, password } = req.body;
         console.log(email, password);
         const result = await User.find({ email: email })
-        res.send(`user may login ${result} `)
+        res.send({error:false, body:result})
 
     } catch (error) {
         console.log(error)
