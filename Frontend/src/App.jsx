@@ -18,10 +18,10 @@ function App() {
       </Box>
       {
         !isRegister ?
-          <Register />
+          <Register isRegister={isRegister} setisRegister={setisRegister} />
           :
-          isAuth ?
-            <Login />
+          !isAuth ?
+            <Login isAuth={isAuth} setIsAuth={setIsAuth} />
             :
             <>
               <Box textAlign={'center'}>

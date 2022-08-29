@@ -17,7 +17,7 @@ import {
 import { useState } from 'react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 
-export default function Register() {
+export default function Register({ isRegister, setisRegister }) {
     const [showPassword, setShowPassword] = useState(false);
     const [name, setName] = useState("")
     const [password, setPassword] = useState('')
@@ -39,6 +39,8 @@ export default function Register() {
         })
             .then(response => response.json())
             .then(json => console.log(json));
+        setisRegister(true)
+        
     }
 
     return (
