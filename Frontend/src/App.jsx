@@ -1,33 +1,51 @@
+import { MoonIcon, SunIcon } from '@chakra-ui/icons';
+import { Box, Button, useColorMode } from '@chakra-ui/react';
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import Login from './components/Login'
+import Register from './components/Register'
+import TodoPage from './components/TodoPage'
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  const [isAuth, setIsAuth] = useState(false)
+  const [isRegister, setisRegister] = useState(false)
+  const { colorMode, toggleColorMode } = useColorMode();
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
+    <>
+      <Box pos={"fixed"} >
+        <Button onClick={toggleColorMode}>
+          {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+        </Button>
+      </Box>
+      {
+        !isRegister ?
+          <Register />
+          :
+          isAuth ?
+            <Login />
+            :
+            <>
+              <Box textAlign={'center'}>
+                <Button
+                  mt={10}
+                  p={30}
+                  w={'max-content'}
+                  bg={'green.400'}
+                  color={'white'}
+                  rounded={'xl'}
+                  boxShadow={'0 5px 20px 0px rgb(72 187 120 / 43%)'}
+                  _hover={{
+                    bg: 'green.500',
+                  }}
+                  _focus={{
+                    bg: 'green.1000',
+                  }}>
+                  Add Todo
+                </Button>
+              </Box>
+              <TodoPage />
+            </>
+      }
+    </>
   )
 }
 
