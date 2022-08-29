@@ -20,14 +20,13 @@ todoRouter.get("/todos", async (req, res) => {
     }
 })
 
-todoRouter.post("/todos", async (req, res) => {
+todoRouter.post("/addTodos", async (req, res) => {
     try {
       
         console.log(req.body);
-        
-
-
-        res.status(200).json(response)
+        const todo = Todo(req.body)
+        todo.save()
+        res.status(200).json({msg:"todo added", body: todo})
 
     } catch (error) {
         console.log(error)
