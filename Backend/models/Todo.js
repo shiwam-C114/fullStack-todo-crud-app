@@ -6,6 +6,6 @@ const todoSchema = new mongoose.Schema({
     tag: String
 })
 
-const Todo = mongoose.model("user", todoSchema)
+const Todo = mongoose.model("todo", todoSchema)
 
 module.exports = Todo
